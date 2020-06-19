@@ -18,7 +18,21 @@ app.use(morgan('common'));
 app.use(express.json());
 
 app.get('/', (req, res, next) => {
-  res.json({ message: 'Hello, world!' });
+  res.json({ message: 'URL Shortener' });
+});
+
+app.get('/:id', async (req, res, next) => {
+  const { id: slug } = req.params;
+
+  try {
+    const url = await urls.findOne({ slug });
+    if (url) {
+      return res.redirect(url.url);
+    }
+    return res.status(404).json({ message: `${url} not found` });
+  } catch (error) {
+    return res.status(404).json({ message: `${url} not found` });
+  }
 });
 
 const schema = yup.object().shape({
@@ -36,24 +50,20 @@ app.post('/api/url', async (req, res, next) => {
       url,
       slug,
     });
-
     if (!slug) {
       slug = nanoid(5);
-    } else {
-      const isExistingUrl = await urls.findOne({ slug });
-      if (isExistingUrl) {
-        throw new Error('Slug in use.');
-      }
     }
-
+    const isExistingUrl = await urls.findOne({ slug });
+    if (isExistingUrl) {
+      throw new Error('Slug in use.');
+    }
     slug = slug.toLowerCase();
-
     const newUrl = {
       url,
       slug,
     };
     const createdUrl = await urls.insert(newUrl);
-    res.json(createdUrl);
+    res.status(201).json(createdUrl);
   } catch (error) {
     next(error);
   }

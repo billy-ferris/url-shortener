@@ -1,6 +1,6 @@
-- [ x ] Create server file
-  - [ x ] Init npm
-  - [ x ] Install dependencies
+- [x] Create server file
+  - [x] Init npm
+  - [x] Install dependencies
     - express
     - morgan
     - helmet
@@ -8,29 +8,26 @@
     - nodemon
     - yup
     - dotenv
-  - [ x ] Add start script and dev script
-- [ x ] Setup server file
-  - [ x ] Root api endpoint
-  - [ x ] Invoke middlewares
-  - [ x ] Create not found handler
-  - [ x ] Create error handler
-- [ x ] Add db to server
-  - [ x ] install monk dependency
-  - [ x ] Create db folder
-    - [ x ] Create db connection
-    - [ x ] Connect to urls cluster/collection
-  - [ x ] Create route to add url to db /api/url
-    - [ x ] Create schema with yup
-    - [ x ] Validate post object with yup schema
+  - [x] Add start script and dev script
+- [x] Setup server file
+  - [x] Root api endpoint
+  - [x] Invoke middlewares
+  - [x] Create not found handler
+  - [x] Create error handler
+- [x] Add db to server
+  - [x] install monk dependency
+  - [x] Create db folder
+    - [x] Create db connection
+    - [x] Connect to urls cluster/collection
+  - [x] Create route to add url to db /api/url
+    - [x] Create schema with yup
+    - [x] Validate post object with yup schema
       - url
       - name alphanum, min 1 chars, max 100 chars
-    - [ x ] Make sure name is not in use
-      - [ x ] insert url into db
-      - [ ] respond with created object
-    - [ x ] Respond with error if in use
-- [ ] Create route to redirect a url
-  - [ ] Search by name - if found, redirect to url
-    - [ ] If not found, show 404
+    - [x] Make sure name is not in use
+      - [x] insert url into db
+      - [x] respond with created status object
+    - [x] Respond with error if in use
 - [ ] Create public folder
   - [ ] Create index.html
   - [ ] Serve public folder from express
@@ -38,4 +35,7 @@
 - [ ] Submit form - fetch POST to server
   - [ ] Show any errors
   - [ ] Show create link on page
+- [x] Create route to redirect a url
+  - [x] Search by id/slug - if found, redirect to url
+    - [x] If not found, show 404
 - [ ] Deploy!
